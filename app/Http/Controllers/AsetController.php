@@ -15,6 +15,8 @@ class AsetController extends Controller
     {
         //
         $asets = Aset::all();
+        // dd($asets);
+
         return view('aset.index') -> with('asets', $asets);
     }
 
@@ -44,11 +46,11 @@ class AsetController extends Controller
             'th_produksi'=> 'required' ,
             'th_pengadaan'=> 'required',
             'th_penggunaan'=> 'required',
-            'lokasi',
-            'koordinate',
+            'lokasi'=> 'required',
+            'koordinat' => 'required',
             'status' => 'required',
             'kondisi' => 'required',
-            'penanggung_jawab'
+            'penanggung_jawab'=> 'required'
         ]);
 
         $aset = new Aset();
@@ -100,11 +102,11 @@ class AsetController extends Controller
      */
     public function update(Request $request, Aset $aset)
     {
-        //
+        
         $validasi = $request -> validate([
             'jenis_aset' => 'required',
             'merk' => 'required',
-            'tipe' => 'required|unique:asets',
+            'tipe' => 'required',
             'foto' => 'required|file|image',
             's_n'=> 'required',
             'owner'=> 'required',
@@ -112,7 +114,7 @@ class AsetController extends Controller
             'th_pengadaan'=> 'required',
             'th_penggunaan'=> 'required',
             'lokasi',
-            'koordinate',
+            'koordinat'=> 'required',
             'status' => 'required',
             'kondisi' => 'required',
             'penanggung_jawab'

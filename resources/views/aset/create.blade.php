@@ -2,7 +2,7 @@
 
 
 @section('content')
-<body >
+<body onload = "getLocation()">
     @if ($errors->any())
   <div class="alert alert-danger">
       <ul>
@@ -74,7 +74,7 @@
 
             <div class="form-group">
                 <label for="koordinat">Koordinat</label>
-                <input type="text" class="form-control" id = "coordinate"name="koordinat" value = "getLocation()" disabled>
+                <input type="text" class="form-control" id = "coordinate"name="koordinat" value = "">
             </div>
 
             <div class="form-group">
@@ -112,7 +112,7 @@
 
             <div class="form-group">
                 <label for="penanggung_jawab">Penanggung Jawab</label>
-                <input type="text" class="form-control" name="penanggung_jawab" value = "user" disabled>
+                <input type="text" class="form-control" name="penanggung_jawab" value = "user">
             </div>
             
             {{-- cooordinate appears --}}

@@ -38,11 +38,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Aset</h4>
-                @if(Session::get('success'))
-                  <div class = "alert alert-success">
-                    {{Session::get('success')}}
-                  </div>
-                @endif
+               
                 <div class="text-right">
                   <a href = "{{ route('aset.create')}}" type="button" class="btn btn-info btn-rounded btn-fw">Tambah</a>
                 </div>
@@ -70,7 +66,7 @@
                                   <td>{{ $item['s_n'] }}</td>
                                   <td>{{ $item['th_produksi']}}</td>
                                   <td>
-                                    <form action = "{{route('aset.destroy', $item->id)}}" method = "post">
+                                    <form action = "{{route('aset.destroy', $item->id)}}" method = "POST">
                                       @csrf
                                       @method('DELETE')
                                       <button type = "submit" class = "btn btn-danger btn-rounded show_confirm">Hapus</button>
