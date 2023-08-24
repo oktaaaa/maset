@@ -57,14 +57,14 @@ class AsetController extends Controller
         $aset->tipe = $validasi['tipe'];
         $aset->s_n = $validasi['s_n'];
         $aset->owner = $validasi['owner'];
-        $aset->th_produksi = $validasi['th_produksi']  ?? null;;
-        $aset->th_pengadaan = $validasi['th_pengadaan'] ?? null;;
-        $aset->th_penggunaan = $validasi['th_penggunaan'] ?? null;;
-        $aset->lokasi = $validasi['lokasi']  ?? null;;
-        $aset->koordinat = $validasi['koordinat'] ?? null;;
+        $aset->th_produksi = $validasi['th_produksi'];
+        $aset->th_pengadaan = $validasi['th_pengadaan'];
+        $aset->th_penggunaan = $validasi['th_penggunaan'];
+        $aset->lokasi = $validasi['lokasi'];
+        $aset->koordinat = $validasi['koordinat'];
         $aset->status = $validasi['status'];
         $aset->kondisi = $validasi['kondisi'];
-        $aset->penanggung_jawab = $validasi['penanggung_jawab'] ?? null;;
+        $aset->penanggung_jawab = $validasi['penanggung_jawab'];
     
         // foto
         $ext = $request -> foto -> getClientOriginalExtension();
@@ -73,7 +73,8 @@ class AsetController extends Controller
 
         $aset -> foto = $new_filename;
         $aset -> save();
-        return redirect() -> route ('aset.index') -> with('success', 'Data berhasil disimpan' . $validasi['jenis_aset']. $validasi['tipe']);  
+        return redirect() -> route ('aset.index') -> with('success', 'Data berhasil disimpan' . $validasi['jenis_aset']. $validasi['tipe']);
+        $request->session() -> flash('success', 'data stored');
     }
 
     /**
@@ -90,6 +91,8 @@ class AsetController extends Controller
     public function edit(Aset $aset)
     {
         //
+        return view('aset.edit')
+        ->with('asets', $aset);
     }
 
     /**
@@ -98,6 +101,25 @@ class AsetController extends Controller
     public function update(Request $request, Aset $aset)
     {
         //
+        $validasi = $request -> validate([
+            'jenis_aset' => 'required',
+            'merk' => 'required',
+            'tipe' => 'required|unique:asets',
+            'foto' => 'required|file|image',
+            's_n'=> 'required',
+            'owner'=> 'required',
+            'th_produksi'=> 'required' ,
+            'th_pengadaan'=> 'required',
+            'th_penggunaan'=> 'required',
+            'lokasi',
+            'koordinate',
+            'status' => 'required',
+            'kondisi' => 'required',
+            'penanggung_jawab'
+        ]);
+
+        Aset::where('id', $aset -> id) -> update($validasi);
+        return redirect() -> route('aset.index')  -> with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -106,5 +128,8 @@ class AsetController extends Controller
     public function destroy(Aset $aset)
     {
         //
+        
+        $aset -> delete();
+        return back();
     }
 }

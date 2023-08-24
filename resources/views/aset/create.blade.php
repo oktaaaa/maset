@@ -2,7 +2,7 @@
 
 
 @section('content')
-<body onload = "getLocation()">
+<body >
     @if ($errors->any())
   <div class="alert alert-danger">
       <ul>
@@ -36,7 +36,7 @@
 
             <div class="form-group">
                 <label for = "foto">Foto Aset</label>
-                <input type="file" class="form-control" name="foto" />
+                <input type="file" class="form-control" name="foto" accept="image/">
             </div>
 
             <div class="form-group">
@@ -74,7 +74,7 @@
 
             <div class="form-group">
                 <label for="koordinat">Koordinat</label>
-                <input type="text" class="form-control" name="koordinat" value = "" disabled>
+                <input type="text" class="form-control" id = "coordinate"name="koordinat" value = "getLocation()" disabled>
             </div>
 
             <div class="form-group">
@@ -98,13 +98,13 @@
                 <label for="kondisi">Kondisi</label>
                 <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="kondisi" value="Normal">
+                      <input type="radio" class="form-check-input" name="kondisi" value="Baik">
                       Baik
                     <i class="input-helper"></i></label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="kondisi" value="Tidak Normal">
+                      <input type="radio" class="form-check-input" name="kondisi" value="Rusak">
                       Rusak
                     <i class="input-helper"></i></label>
                 </div>
@@ -137,7 +137,7 @@
         function showPosition(position){
             let lat = position.coords.latitude
             let lon = position.coords.longitude
-            document.querySelector('.forms-sample input[name = "koordinat"]').value = `${lat}, ${lon}`
+            document.querySelector('.forms-sample input[name = "koordinat"]').value= `${lat}, ${lon}`
         }
     }
 

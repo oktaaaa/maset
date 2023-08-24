@@ -44,6 +44,15 @@
               <span class="menu-title">Aset</span>
             </a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route ('rutinaset.index')}}">
+            <i class="mdi mdi-emoticon menu-icon"></i>
+            <span class="menu-title">Cek Aset</span>
+          </a>
+        </li>
+
+
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <i class="mdi mdi-palette menu-icon"></i>
