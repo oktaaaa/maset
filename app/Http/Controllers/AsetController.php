@@ -71,6 +71,7 @@ class AsetController extends Controller
         // foto
         $ext = $request -> foto -> getClientOriginalExtension();
         $new_filename = $validasi['merk'] . '.' . $ext;
+        
         $request -> foto -> storeAs('public', $new_filename);
 
         $aset -> foto = $new_filename;

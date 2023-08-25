@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aset;
 use App\Models\RutinAset;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,8 @@ class RutinAsetController extends Controller
     public function create()
     {
         //
+        $aset = Aset::all();
+        return view('rutinaset.create') -> with ('aset', $aset);
     }
 
     /**

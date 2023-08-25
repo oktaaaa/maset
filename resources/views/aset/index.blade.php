@@ -59,7 +59,7 @@
                       <tbody>
                           @foreach ($asets as $item)
                               <tr>
-                                <td><img src= img src="{{$item->foto ? asset('public/'. $item->foto) : asset('images/faces/face5.jpg')}}"></td>
+                                <td><img src="{{$item->foto ? asset('storage/'. $item->foto) : asset('images/faces/face5.jpg')}}"></td>
                                   <td>{{ $item['jenis_aset'] }}</td>
                                  <td> {{ $item['merk'] }}</td>
                                  <td> {{ $item['tipe'] }}</td>
@@ -69,8 +69,11 @@
                                     <form action = "{{route('aset.destroy', $item->id)}}" method = "POST">
                                       @csrf
                                       @method('DELETE')
-                                      <button type = "submit" class = "btn btn-danger btn-rounded show_confirm">Hapus</button>
-                                      <a href="{{route('aset.edit', $item->id)}}" class = "btn btn-warning btn-rounded">Ubah</a>
+                                      <button type = "submit" class = "btn btn-danger btn-rounded show_confirm" >Hapus</button>
+                                      <a href="{{route('aset.edit', $item->id)}}" class = "btn btn-warning btn-rounded ">Ubah</a>
+                                      <a href="">
+                                        <i class = "mdi mdi-information menu-icon mdi-lg" width="16" height="16"> </i>                                
+                                      </a>
                                     </form>
                                   </td>
                               </tr>

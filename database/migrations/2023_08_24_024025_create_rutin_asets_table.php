@@ -12,7 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rutin_asets', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table -> primary('id');
+            $table -> uuid('aset_id');
+            $table -> foreign('aset_id') -> references('id') -> on('asets')->restrictOnDelete()->restrictOnUpdate();
+            $table->integer('th_pengadaan');
+            $table->integer('th_penggunaan');
+            $table->string('lokasi');
+            $table->string('koordinat');
+            $table->string('status');
+            $table->string('kondisi');
+            $table->string('penanggung_jawab');
             $table->timestamps();
         });
     }
