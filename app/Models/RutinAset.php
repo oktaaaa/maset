@@ -10,5 +10,9 @@ class RutinAset extends Model
 {
     use HasFactory, HasUuids;
 
-    // protected $table = 'ruti_asets'
+    protected $table = 'rutin_asets';
+
+    public function rutinaset(){
+        return $this->belongsTo(Aset::class, 'aset_id');
+    }
 }

@@ -1,7 +1,9 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 @extends('layout.main')
 
 
 @section('content')
+
 <body onload = "getLocation()">
     @if ($errors->any())
   <div class="alert alert-danger">
@@ -14,12 +16,19 @@
   @endif
     <div class="card">
         <div class="card-body">
-        <h4 class="card-title">Form Tambah Aset</h4>
-        <p class="card-description">
-            Tambah Aset
-        </p>
-        <form form action = "{{route('aset.store')}}" method = "POST" class="forms-sample" enctype="multipart/form-data">
+        <h4 class="card-title">Cek Rutin</h4>
+        
+        <form form action = "{{route('rutinaset.store')}}" method = "POST" class="forms-sample" enctype="multipart/form-data">
             @csrf
+            <div class="form-group">
+                <label for="tipe">Tipe</label>
+                <select name="aset_id" class = "form-control" id = "aset_id">
+                    @foreach($aset as $item)
+                        <option value="{{$item->id}}"> {{$item -> tipe}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="jenis_aset">Jenis Aset</label>
                 <input type="text" class="form-control" name = "jenis_aset" placeholder="Jenis Aset">
@@ -27,11 +36,6 @@
             <div class="form-group">
                 <label for="merk">Merk</label>
                 <input type="text" class="form-control" name = "merk" placeholder="Merk Aset">
-            </div>
-
-            <div class="form-group">
-                <label for="tipe">Tipe</label>
-                <input type="text" class="form-control" name = "tipe" placeholder="Tipe Aset">
             </div>
 
             <div class="form-group">
@@ -89,7 +93,7 @@
                 <div class="form-check">
                     <label class="form-check-label">
                       <input type="radio" class="form-check-input" name="status" value="Tidak Normal">
-                      Tidak Normal
+                      Default
                     <i class="input-helper"></i></label>
                 </div>
             </div>
@@ -128,6 +132,7 @@
 @endsection
 
 
+
 <script>
     function getLocation(){
         if(navigator.geolocation){
@@ -140,6 +145,22 @@
             document.querySelector('.forms-sample input[name = "koordinat"]').value= `${lat}, ${lon}`
         }
     }
+
+    // input autofilled
+    $(document).ready(function(){
+        $("#aset_id").change(function(){
+            $.ajax({
+                url: '/rutinaset/create/',
+                type: 'POST',
+                data: {client: $(this).val()},
+                success: function(response){
+                    var Vals = JSON.parse(response)
+
+                    $("input[name='merk']").val(Vals.merk);
+                }
+            })
+        })
+    })
 
 
 </script>

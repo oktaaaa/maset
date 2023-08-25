@@ -9,7 +9,7 @@
                 <h4 class="card-title">Pengecekkan Aset Rutin</h4>
                
                 <div class="text-right">
-                  <a href = "{{ route('aset.create')}}" type="button" class="btn btn-info btn-rounded btn-fw">Tambah</a>
+                  <a href = "{{ route('rutinaset.create')}}" type="button" class="btn btn-info btn-rounded btn-fw">Tambah</a>
                 </div>
                 <div class="table-responsive">
                   <table class="table table-striped">
@@ -53,9 +53,7 @@
                                       @method('DELETE')
                                       <button type = "submit" class = "btn btn-danger btn-rounded show_confirm" >Hapus</button>
                                       <a href="{{route('aset.edit', $item->id)}}" class = "btn btn-warning btn-rounded ">Ubah</a>
-                                      <a href="">
-                                        <i class = "mdi mdi-information menu-icon mdi-lg" width="16" height="16"> </i>                                
-                                      </a>
+                                      
                                     </form>
                                   </td>
                               </tr>
