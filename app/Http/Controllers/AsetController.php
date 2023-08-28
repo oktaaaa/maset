@@ -13,7 +13,10 @@ class AsetController extends Controller
      */
     public function index()
     {
+        
         //
+        $tipeData['data'] = Aset::orderBy("tipe", "asc")
+            ->select('id','tipe') -> get();
         $asets = Aset::all();
         // dd($asets);
 
@@ -27,7 +30,7 @@ class AsetController extends Controller
     {
         //
         $asets = Aset::all();
-        return view('aset.create') -> with ('asets', $asets);
+        return view('aset.create');
     }
 
     /**
@@ -86,6 +89,8 @@ class AsetController extends Controller
     public function show(Aset $aset)
     {
         //
+        return view('aset.index') -> with('asets', $aset);
+        
     }
 
     /**
@@ -110,15 +115,7 @@ class AsetController extends Controller
             'tipe' => 'required',
             'foto' => 'required|file|image',
             's_n'=> 'required',
-            'owner'=> 'required',
-            'th_produksi'=> 'required' ,
-            'th_pengadaan'=> 'required',
-            'th_penggunaan'=> 'required',
-            'lokasi',
-            'koordinat'=> 'required',
-            'status' => 'required',
-            'kondisi' => 'required',
-            'penanggung_jawab'
+            'th_produksi'=> 'required'
         ]);
 
         Aset::where('id', $aset -> id) -> update($validasi);
@@ -135,4 +132,12 @@ class AsetController extends Controller
         $aset -> delete();
         return back();
     }
+
+    // public function findTipe($tipeid = 0){
+    //     $tipeData['data'] = Aset::orderBy("merk", "asc")
+    //         ->select('id','merk') -> where('tipe', $tipeid)->get();
+    //     return response()->json($tipeData);
+    // }
+
+    
 }

@@ -16,6 +16,15 @@ return new class extends Migration
             $table -> primary('id');
             $table -> uuid('aset_id');
             $table -> foreign('aset_id') -> references('id') -> on('asets')->restrictOnDelete()->restrictOnUpdate();
+            
+            $table -> uuid('merk');
+            $table -> foreign('merk') -> references('id') -> on('asets')->restrictOnDelete()->restrictOnUpdate();
+            
+            $table -> uuid('jenis');
+            $table -> foreign('jenis') -> references('id') -> on('asets')->restrictOnDelete()->restrictOnUpdate();
+            
+            $table -> uuid('th_produksi');
+            $table -> foreign('th_produksi') -> references('id') -> on('asets')->restrictOnDelete()->restrictOnUpdate();
             $table->integer('th_pengadaan');
             $table->integer('th_penggunaan');
             $table->string('lokasi');

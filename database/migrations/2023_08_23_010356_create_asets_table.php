@@ -19,15 +19,7 @@ return new class extends Migration
             $table->string('tipe');
             $table->string('foto');
             $table->string('s_n');
-            $table->string('owner');
             $table->integer('th_produksi');
-            $table->integer('th_pengadaan');
-            $table->integer('th_penggunaan');
-            $table->string('lokasi');
-            $table->string('koordinat');
-            $table->string('status');
-            $table->string('kondisi');
-            $table->string('penanggung_jawab');
             $table->timestamps();
         });
     }

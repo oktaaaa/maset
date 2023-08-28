@@ -14,8 +14,10 @@ class RutinAsetController extends Controller
     public function index()
     {
         //
-        $rutinaset = RutinAset::all();
-        return view('rutinaset.index') -> with('rutinasets', $rutinaset);
+
+        
+        $rutinasets = RutinAset::all();
+        return view('rutinaset.index') -> with('rutinasets', $rutinasets);
         
     }
 
@@ -67,5 +69,15 @@ class RutinAsetController extends Controller
     public function destroy(RutinAset $rutinAset)
     {
         //
+    }
+
+    // public function findMerk($id){
+    //     $merk = Aset::where('kode_aset', $id) -> get();
+    //     return response()->json($merk);
+    // }
+    public function findTipe($tipeid = 0){
+        $tipeData['data'] = Aset::orderBy("merk", "asc")
+            ->select('id','merk') -> where('tipe', $tipeid)->get();
+        return response()->json($tipeData);
     }
 }

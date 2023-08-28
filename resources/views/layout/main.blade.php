@@ -5,6 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name = "csrf-token" content="{{ csrf_token() }}">
   <title>Spica Admin</title>
   <!-- base:css -->
   <link rel="stylesheet" href="{{url('vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -27,16 +28,12 @@
           <span></span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="{{ route ('dashboard')}}">
             <i class="mdi mdi-view-quilt menu-icon"></i>
             <span class="menu-title">Dashboard</span>
-            <div class="badge badge-info badge-pill">2</div>
           </a>
         </li>
-        <li class="nav-item sidebar-category">
-          <p>Components</p>
-          <span></span>
-        </li>
+        
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route ('aset.index')}}">
